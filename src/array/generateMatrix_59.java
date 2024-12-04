@@ -129,6 +129,6 @@ public int[][] generateMatrix(int n) {
         generateMatrix_59 solution = new generateMatrix_59();
         // 打印二维数组
         System.out.println("二维数组内容：");
-        print2DArray(solution.generateMatrix(5));
+        print2DArray(solution.generateMatrix(12));
     }
 }
