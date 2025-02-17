@@ -17,7 +17,8 @@ public class removeNthFromEnd_19 {
             cur = cur.next;
         }
         cur.next = cur.next.next;
-        return head;**/
+        return head;
+         **/
         ListNode dummynode = new ListNode(-1,head);
         ListNode slow = dummynode;
         ListNode fast = dummynode;
