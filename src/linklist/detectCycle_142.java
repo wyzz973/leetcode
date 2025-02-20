@@ -5,6 +5,9 @@ public class detectCycle_142 {
         ListNode slow = head;
         ListNode fast = head;
         while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+
             if (slow == fast){
                 //说明有环，还要找到入口;
                 ListNode index1 = fast;
@@ -15,8 +18,7 @@ public class detectCycle_142 {
                 }
                 return index1;
             }
-            slow = slow.next;
-            fast = fast.next.next;
+
         }
         return null;
     }
