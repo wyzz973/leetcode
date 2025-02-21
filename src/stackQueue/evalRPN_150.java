@@ -15,20 +15,20 @@ public class evalRPN_150 {
             if (!tokens[i].equals("*") && !tokens[i].equals("+") && !tokens[i].equals("-") && !tokens[i].equals("/")) {
                 int num = Integer.parseInt(tokens[i]);
                 stack.push(num);
-            }else if (tokens[i].equals("+")){
+            } else if (tokens[i].equals("+")) {
                 int num1 = stack.pop();
                 int num2 = stack.pop();
                 stack.push(num2 + num1);
 
-            }else if (tokens[i].equals("-")){
+            } else if (tokens[i].equals("-")) {
                 int num1 = stack.pop();
                 int num2 = stack.pop();
                 stack.push(num2 - num1);
-            }else if (tokens[i].equals("*")){
+            } else if (tokens[i].equals("*")) {
                 int num1 = stack.pop();
                 int num2 = stack.pop();
                 stack.push(num2 * num1);
-            }else if (tokens[i].equals("/")){
+            } else if (tokens[i].equals("/")) {
                 int num1 = stack.pop();
                 int num2 = stack.pop();
                 stack.push(num2 / num1);
@@ -38,7 +38,7 @@ public class evalRPN_150 {
     }
 
     public static void main(String[] args) {
-        String[] strings = new String[]{"10","6","9","3","+","-11","*","/","*","17","+","5","+"};
+        String[] strings = new String[]{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"};
         System.out.println(evalRPN(strings));
     }
 }

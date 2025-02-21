@@ -20,9 +20,11 @@ public class maxSlidingWindow_239 {
         }
 
         int[] ans = new int[nums.length - k + 1];
+        Deque<Integer> deque = new LinkedList<>();
+        /*
         int j = 0;
         int max = -10001;
-        Deque<Integer> deque = new LinkedList<>();
+
         for (int i = 0; i < nums.length; i++) {
             if (deque.size() < k){
                 deque.add(nums[i]);
@@ -31,10 +33,31 @@ public class maxSlidingWindow_239 {
             }else {
                 j++;
                 max = -10001;
-                deque.clear();
+                deque.pop();
                 i-=k;
             }
         }
+
+         */
+        for (int i = 0; i < nums.length; i++) {
+
+            // 移除队列中已超出窗口范围的元素
+            if (!deque.isEmpty() && deque.peekFirst() < i - k + 1){
+                deque.pollFirst();
+            }
+            // 保持队列的单调性，移除比当前元素小的所有元素
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]){
+                deque.pollLast();
+            }
+            deque.offerLast(i);
+
+            if (i >= k - 1){
+                ans[i - k + 1] = nums[deque.peekFirst()];
+            }
+        }
+
+
+
         return ans;
     }
 
