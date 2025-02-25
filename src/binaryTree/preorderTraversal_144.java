@@ -61,6 +61,36 @@ public class preorderTraversal_144 {
         preoder(root.right, list);
     }
 
+//    统一遍历模板
+//      前序遍历顺序：根节点 -> 左子树 -> 右子树
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        if (root != null){
+            stack.push(root);
+        }
+        while (!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            if (node != null){
+                if (node.right != null){
+                    stack.push(node.right);
+                }
+                if (node.left != null){
+                    stack.push(node.left);
+                }
+                stack.push(node);
+                stack.push(null);
+            }else {
+//                stack.pop();
+                node = stack.pop();
+                result.add(node.val);
+            }
+
+        }
+        return result;
+    }
+
+
 
 
     //测试用例
@@ -70,7 +100,7 @@ public class preorderTraversal_144 {
         root.right.left = new TreeNode(3);
 
         preorderTraversal_144 solution = new preorderTraversal_144();
-        List<Integer> result = solution.preorderTraversal(root);
+        List<Integer> result = solution.preorderTraversal2(root);
 
         System.out.println(result); // 输出结果：[1, 2, 3]
     }

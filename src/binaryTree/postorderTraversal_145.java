@@ -2,6 +2,7 @@ package binaryTree;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class postorderTraversal_145 {
     public List<Integer> postorderTraversal(TreeNode root) {
@@ -19,6 +20,32 @@ public class postorderTraversal_145 {
         postoder(root.left, list);
         postoder(root.right, list);
         list.add(root.val);
+    }
+
+//    后序遍历顺序：左子树、右子树、根节点
+    public List<Integer> postorderTraversal2(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        if (root != null){
+            stack.push(root);
+        }
+        while (!stack.isEmpty()){
+            TreeNode node = stack.pop();
+            if (node != null){
+                stack.push(node);
+                stack.push(null);
+                if (node.right != null){
+                    stack.push(node.right);
+                }
+                if (node.left != null){
+                    stack.push(node.left);
+                }
+            }else {
+                node = stack.pop();
+                list.add(node.val);
+            }
+        }
+        return list;
     }
 
     //测试用例
